@@ -10,8 +10,9 @@ namespace RawCAD.Console {
       }
 
       static async Task MainAsync(string[] args) {
-         var engine = new Engine();
-         await engine.Run(CancellationToken.None);
+         using (var engine = Core.IoC.Container.Get<IEngine>()) {
+            await engine.Run(CancellationToken.None);
+         }
       }
    }
 }
