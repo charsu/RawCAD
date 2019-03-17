@@ -14,18 +14,21 @@ namespace RawCAD.Core.IoC {
    public class Container {
       public static T Get<T>() where T : class, IEngine
          => new Engine(
-            // command parsers 
+            // command parsers (order matters !!!)
             new CommandEngine(new List<ICommandParser>() {
                new QuitCommandParser(),
-               new CanvasCommandParser()
+               new CanvasCommandParser(),
+               new LineCommandParser()
             }),
             // the screen setup and make sure we account for the reserved space for the command prompt
             new Screen(
                /*width*/ Console.WindowWidth,
                /*height*/ Console.WindowHeight - 2,
-               /*renderers */ new List<ICommandRenderer>() {
-                                 new CanvasRenderer()
-                              })
+               /*renderers (order matters !!!) */
+               new List<ICommandRenderer>() {
+                     new CanvasRenderer(),
+                     new LineRenderer()
+                  })
             ) as T;
    }
 }
