@@ -12,7 +12,7 @@ namespace RawCAD.Core.Parsers.Commands {
       /// <summary>
       /// reg ex with named capture group for quick extraction 
       /// </summary>
-      public const string REGEX_EXPR = @"^[\s]*(?<cmd>[c])[\s](?<w>[0-9]*)[\s](?<h>[0-9]*)[\s]*";
+      public const string REGEX_EXPR = @"^[\s]*(?<cmd>[c])[\s](?<w>[0-9]*)[\s](?<h>[0-9]*)[\s]*$";
 
       public const string REGEX_EXPRX_COMD = "cmd";
       public const string REGEX_EXPRX_HEIGHT = "h";
