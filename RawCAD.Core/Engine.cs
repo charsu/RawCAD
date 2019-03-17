@@ -22,7 +22,6 @@ namespace RawCAD.Core {
          IsRunning = true;
          string input = string.Empty;
 
-
          try {
             while (IsRunning) {
                cancellationToken.ThrowIfCancellationRequested();
