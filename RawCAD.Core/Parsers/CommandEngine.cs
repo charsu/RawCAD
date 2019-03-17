@@ -22,7 +22,7 @@ namespace RawCAD.Core.Parsers {
          var input = Console.ReadLine();
          if (_commandParsers != null) {
             foreach (var p in _commandParsers) {
-               var response = await p.ParseCommand(lastInput, cancellationToken).ConfigureAwait(false);
+               var response = await p.ParseCommand(input, cancellationToken).ConfigureAwait(false);
                if (response.WasHandled) {
                   return response;
                }

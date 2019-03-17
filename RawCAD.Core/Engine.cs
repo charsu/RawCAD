@@ -4,16 +4,18 @@ using System.Threading;
 using System.Threading.Tasks;
 using RawCAD.Core.Models.Commands;
 using RawCAD.Core.Parsers;
+using RawCAD.Core.Renders;
 
 namespace RawCAD.Core {
    public class Engine : IEngine {
-
-      public Engine(ICommandEngine commandEngine) {
-         _commandEngine = commandEngine;
-      }
-
       internal bool IsRunning { get; set; } = false;
       private readonly ICommandEngine _commandEngine;
+      private readonly IScreen _screen;
+
+      public Engine(ICommandEngine commandEngine, IScreen screen) {
+         _commandEngine = commandEngine;
+         _screen = screen;
+      }
 
       public async Task Run(CancellationToken cancellationToken) {
          // set the internal state to running ...
@@ -26,7 +28,7 @@ namespace RawCAD.Core {
                cancellationToken.ThrowIfCancellationRequested();
 
                // display 
-               Console.WriteLine($"echo:{input}");
+               await _screen.Render(cancellationToken);
 
 
                // read key 
