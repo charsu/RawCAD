@@ -9,9 +9,11 @@ namespace RawCAD.Console {
          MainAsync(args).GetAwaiter().GetResult();
       }
 
+      static readonly CancellationToken cancellationToken = new CancellationToken();
+
       static async Task MainAsync(string[] args) {
          using (var engine = Core.IoC.Container.Get<IEngine>()) {
-            await engine.Run(CancellationToken.None);
+            await engine.Run(cancellationToken);
          }
       }
    }

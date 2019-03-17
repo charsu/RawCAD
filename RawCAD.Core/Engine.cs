@@ -30,11 +30,11 @@ namespace RawCAD.Core {
                // display 
                await _screen.Render(cancellationToken);
 
-
-               // read key 
+               // get and process user input
                var command = await _commandEngine.GetNextCommand(cancellationToken).ConfigureAwait(false);
 
-               // process key ?!?
+               // try to update the screen 
+               await _screen.Update(command, cancellationToken);
 
                // process the exit command
                if (command.WasHandled && command.Output is QuitCommandDto) {
