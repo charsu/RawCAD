@@ -23,6 +23,11 @@ namespace RawCAD.Core.Renders.Commands {
 
                   // index inside the buffer
                   var idx = i * sWidth + j;
+
+                  // protect against buffer overflow
+                  if (idx >= buffer.Length)
+                     break;
+
                   // reset prev value 
                   buffer[idx] = char.MinValue;
 

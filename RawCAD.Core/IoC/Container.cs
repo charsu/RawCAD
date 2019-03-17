@@ -18,7 +18,8 @@ namespace RawCAD.Core.IoC {
             new CommandEngine(new List<ICommandParser>() {
                new QuitCommandParser(),
                new CanvasCommandParser(),
-               new LineCommandParser()
+               new LineCommandParser(),
+               new SquareCommandParser()
             }),
             // the screen setup and make sure we account for the reserved space for the command prompt
             new Screen(
@@ -27,7 +28,8 @@ namespace RawCAD.Core.IoC {
                /*renderers (order matters !!!) */
                new List<ICommandRenderer>() {
                      new CanvasRenderer(),
-                     new LineRenderer()
+                     new LineRenderer(),
+                     new SquareRenderer()
                   })
             ) as T;
    }
