@@ -16,9 +16,9 @@ namespace RawCAD.Tests.Renderers.Commands {
          => AutoMock.GetLoose();
 
       [Test]
-      public async Task Test_OK() {
+      public async Task Canvas3x3_Test_OK() {
          var s = GetMock().Create<CanvasRenderer>();
-         var input = new CanvasCommandDto() { Height = 3, Width = 3 };
+         var input = new CanvasCommandDto() { Height = 1, Width = 1 };
          var buffer = new char[9];
          var screen = new System.Drawing.Rectangle(0, 0, 3, 3);
 
