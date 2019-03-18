@@ -18,7 +18,7 @@ namespace RawCAD.Tests.Renderers.Commands {
       [Test]
       public async Task Test_OK() {
          var s = GetMock().Create<LineRenderer>();
-         var input = new LineCommandDto() { X1 = 0, Y1 = 0, X2 = 3, Y2 = 3 };
+         var input = new LineCommandDto() { X1 = 0, Y1 = 0, X2 = 2, Y2 = 2 };
          var buffer = new char[9];
          var screen = new System.Drawing.Rectangle(0, 0, 3, 3);
 
