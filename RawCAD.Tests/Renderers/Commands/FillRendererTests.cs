@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -17,19 +18,38 @@ namespace RawCAD.Tests.Renderers.Commands {
 
       [Test]
       public async Task Test_OK() {
-         var s = GetMock().Create<CanvasRenderer>();
-         var input = new CanvasCommandDto() { Height = 3, Width = 3 };
-         var buffer = new char[9];
-         var screen = new System.Drawing.Rectangle(0, 0, 3, 3);
+         var s = GetMock().Create<FillRenderer>();
+         var input = new FillCommandDto() { X = 10, Y = 3, Color = 'o' };
+         var buffer = CANVAS_BEFORE_FILL;
+         var screen = new System.Drawing.Rectangle(0, 0, 22, 6);
 
          await s.Render(input, buffer, screen, _cancellationToken);
 
-         Assert.AreEqual(CANVAS_3X3, buffer);
+         Assert.AreEqual(CANVAS_FILLED, buffer);
       }
 
       #region static data 
 
-      static char[] CANVAS_3X3 = "---|\u0000|---".ToCharArray();
+      static char blank = '\u0000';
+
+      static char[] CANVAS_BEFORE_FILL = string.Join("", new[] {
+         "----------------------",
+         "|bbbbbbbbbbbbbbbxxxxx|",
+         "|xxxxxxbbbbbbbbbxbbbx|",
+         "|bbbbbxbbbbbbbbbxxxxx|",
+         "|bbbbbxbbbbbbbbbbbbbb|",
+         "----------------------"
+      }).Replace('b', blank).ToCharArray();
+
+      static char[] CANVAS_FILLED = string.Join("", new[] {
+         "----------------------",
+         "|oooooooooooooooxxxxx|",
+         "|xxxxxxoooooooooxbbbx|",
+         "|bbbbbxoooooooooxxxxx|",
+         "|bbbbbxoooooooooooooo|",
+         "----------------------"
+      }).Replace('b', blank).ToCharArray();
+
 
       #endregion
    }
