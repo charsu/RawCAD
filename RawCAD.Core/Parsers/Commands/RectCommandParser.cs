@@ -8,7 +8,7 @@ using RawCAD.Core.Models;
 using RawCAD.Core.Models.Commands;
 
 namespace RawCAD.Core.Parsers.Commands {
-   public class SquareCommandParser : ICommandParser {
+   public class RectCommandParser : ICommandParser {
       /// <summary>
       /// reg ex with named capture group for quick extraction 
       /// </summary>
@@ -39,7 +39,7 @@ namespace RawCAD.Core.Parsers.Commands {
                   && !string.IsNullOrEmpty(y2)) {
 
                   output.WasHandled = true;
-                  output.Output = new SquareCommandDto() {
+                  output.Output = new RectCommandDto() {
                      X1 = int.Parse(x1),
                      Y1 = int.Parse(y1),
                      X2 = int.Parse(x2),

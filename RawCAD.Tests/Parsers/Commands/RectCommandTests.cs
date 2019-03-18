@@ -11,7 +11,7 @@ using RawCAD.Core.Parsers.Commands;
 
 namespace RawCAD.Tests.Parsers.Commands {
    [TestFixture]
-   public class SquareCommandTests {
+   public class RectCommandTests {
       private readonly CancellationToken _cancellationToken = CancellationToken.None;
 
       private AutoMock GetMock()
@@ -23,7 +23,7 @@ namespace RawCAD.Tests.Parsers.Commands {
       [TestCase("r 10 2 3 ")]
       [TestCase("r 10 2 3 w2")]
       public async Task Test_NOT_OK(string command) {
-         var s = GetMock().Create<SquareCommandParser>();
+         var s = GetMock().Create<RectCommandParser>();
 
          var r = await s.ParseCommand(command, _cancellationToken);
 
@@ -36,12 +36,12 @@ namespace RawCAD.Tests.Parsers.Commands {
       [TestCase("r 10 10 2222 1")]
       [TestCase(" r 20 10 20 10")]
       public async Task Test_OK(string command) {
-         var s = GetMock().Create<SquareCommandParser>();
+         var s = GetMock().Create<RectCommandParser>();
 
          var r = await s.ParseCommand(command, _cancellationToken);
 
          Assert.IsTrue(r.WasHandled);
-         Assert.IsTrue(r.Output is SquareCommandDto);
+         Assert.IsTrue(r.Output is RectCommandDto);
       }
    }
 }

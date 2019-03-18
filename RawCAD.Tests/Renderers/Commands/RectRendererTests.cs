@@ -11,15 +11,15 @@ using RawCAD.Core.Renders.Commands;
 
 namespace RawCAD.Tests.Renderers.Commands {
    [TestFixture]
-   public class SquareRendererTests {
+   public class RectRendererTests {
       private readonly CancellationToken _cancellationToken = CancellationToken.None;
       private AutoMock GetMock()
          => AutoMock.GetLoose();
 
       [Test]
       public async Task Test_OK() {
-         var s = GetMock().Create<SquareRenderer>();
-         var input = new SquareCommandDto() { X1 = 0, Y1 = 0, X2 = 2, Y2 = 2 };
+         var s = GetMock().Create<RectRenderer>();
+         var input = new RectCommandDto() { X1 = 0, Y1 = 0, X2 = 2, Y2 = 2 };
          var buffer = new char[9];
          var screen = new System.Drawing.Rectangle(0, 0, 3, 3);
 

@@ -8,11 +8,11 @@ using RawCAD.Core.Models;
 using RawCAD.Core.Models.Commands;
 
 namespace RawCAD.Core.Renders.Commands {
-   public class SquareRenderer : ICommandRenderer {
+   public class RectRenderer : ICommandRenderer {
       public const char LINE = 'x';
 
       public Task Render(ICommandDto input, char[] buffer, Rectangle screen, CancellationToken cancellationToken) {
-         var square = input as SquareCommandDto;
+         var square = input as RectCommandDto;
          if (square != null) {
             // we consider that a new canvas will need to reset anything that was before 
             for (int i = square.Y1; i <= square.Y2; i++) {

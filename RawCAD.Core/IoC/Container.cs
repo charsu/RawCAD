@@ -19,7 +19,7 @@ namespace RawCAD.Core.IoC {
                new QuitCommandParser(),
                new CanvasCommandParser(),
                new LineCommandParser(),
-               new SquareCommandParser(),
+               new RectCommandParser(),
                new FillCommandParser()
             }),
             // the screen setup and make sure we account for the reserved space for the command prompt
@@ -30,7 +30,7 @@ namespace RawCAD.Core.IoC {
                new List<ICommandRenderer>() {
                      new CanvasRenderer(),
                      new LineRenderer(),
-                     new SquareRenderer(),
+                     new RectRenderer(),
                      new FillRenderer()
                   })
             ) as T;
