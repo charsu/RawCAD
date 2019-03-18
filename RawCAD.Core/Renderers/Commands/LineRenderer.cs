@@ -19,11 +19,29 @@ namespace RawCAD.Core.Renders.Commands {
 
             // slope 
             var m = mx == 0 || my == 0 ? 0 : my / mx;
-
-            for (int x = line.Y1; x < line.Y2; x++) {
-               var y = GetY(x, m, line.X1, line.Y1);
-               var idx = y * screen.Width + x;
-               buffer[idx] = LINE;
+            if (mx == 0) {
+               // is vertical 
+               for (int y = line.Y1; y <= line.Y2; y++) {
+                  var x = line.X1;
+                  var idx = y * screen.Width + x;
+                  buffer[idx] = LINE;
+               }
+            }
+            else if (my == 0) {
+               // is horizontal 
+               for (int x = line.X1; x <= line.X2; x++) {
+                  var y = line.Y1;
+                  var idx = y * screen.Width + x;
+                  buffer[idx] = LINE;
+               }
+            }
+            else {
+               // we have a slope 
+               for (int x = line.X1; x <= line.X2; x++) {
+                  var y = GetY(x, m, line.X1, line.Y1);
+                  var idx = y * screen.Width + x;
+                  buffer[idx] = LINE;
+               }
             }
          }
 
@@ -32,5 +50,8 @@ namespace RawCAD.Core.Renders.Commands {
 
       // y − y1 = m(x − x1)
       private int GetY(int x, int m, int x1, int y1) => m * (x - x1) + y1;
+      private int GetX(int y, int m, int x1, int y1) => (y - y1) / m - x1;
+
+
    }
 }

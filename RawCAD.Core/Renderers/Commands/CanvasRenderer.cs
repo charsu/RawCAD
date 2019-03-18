@@ -14,11 +14,12 @@ namespace RawCAD.Core.Renders.Commands {
 
       public Task Render(ICommandDto input, char[] buffer, Rectangle screen, CancellationToken cancellationToken) {
          var canvas = input as CanvasCommandDto;
-         int sWidth = screen.Width;
-         int sHeight = screen.Height;
-         var cWidth = canvas.Width + 1;
-         var cHeigth = canvas.Height + 1;
          if (canvas != null) {
+            int sWidth = screen.Width;
+            int sHeight = screen.Height;
+            var cWidth = canvas.Width + 1;
+            var cHeigth = canvas.Height + 1;
+
             // we consider that a new canvas will need to reset anything that was before 
             for (int y = 0; y < sHeight; y++) {
                for (int x = 0; x < sWidth; x++) {

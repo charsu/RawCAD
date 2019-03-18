@@ -41,9 +41,9 @@ namespace RawCAD.Core {
                }
             }
          }
-         catch (Exception) {
+         catch (Exception e) {
             // not good :(
-
+            throw;
          }
 
          // all GOOD 
